@@ -1,0 +1,10 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedNamespace
+metadata:
+  name: geko-demo
+  namespace: geko-demo
+spec:
+  placement:
+    clusters:
+      - name: kubefed-demo2
+      - name: kubefed-demo1
