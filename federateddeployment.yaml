@@ -1,0 +1,39 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedDeployment
+metadata:
+  name: test-deployment
+  namespace: geko-demo
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+            - image: nginx
+              name: nginx
+              volumeMounts:
+                - name: geko-way
+                  mountPath: /usr/share/nginx/html/
+          volumes:
+            - name: geko-way
+              configMap:
+                name: test-configmap
+  placement:
+    clusters:
+      - name: kubefed-demo2
+      - name: kubefed-demo1
+  # overrides:
+  #   - clusterName: kubefed-demo2
+  #     clusterOverrides:
+  #       - path: "/spec/replicas"
+  #         value: 2

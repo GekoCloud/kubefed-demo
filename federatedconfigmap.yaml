@@ -1,0 +1,13 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedConfigMap
+metadata:
+  name: test-configmap
+  namespace: geko-demo
+spec:
+  template:
+    data:
+      index.html: "Feel the Geko way!"
+  placement:
+    clusters:
+      - name: kubefed-demo2
+      - name: kubefed-demo1
