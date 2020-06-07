@@ -17,9 +17,34 @@ All the contents in this repo are supposed to go along with the presentation fro
 Download the latest 2.x release:
 
 ```
-wget https://get.helm.sh/helm-v2.16.7-linux-arm64.tar.gz
+wget https://get.helm.sh/helm-v2.16.7-linux-amd64.tar.gz
 tar xf helm-v2.16.7-linux-arm64.tar.gz
 sudo mv linux-arm64/helm /usr/local/bin
+```
+
+Create the service account for tiller:
+
+```
+cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+EOF
 ```
 
 Now init helm:
