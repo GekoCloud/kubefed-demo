@@ -1,0 +1,18 @@
+apiVersion: types.kubefed.io/v1beta1
+kind: FederatedClusterRoleBinding
+metadata:
+  name: test-clusterrolebinding
+spec:
+  template:
+    subjects:
+    - kind: Group
+      name: test-user
+      apiGroup: rbac.authorization.k8s.io
+    roleRef:
+      kind: ClusterRole
+      name: cluster-admin
+      apiGroup: rbac.authorization.k8s.io
+  placement:
+    clusters:
+    - name: kubefed-demo2
+    - name: kubefed-demo1
