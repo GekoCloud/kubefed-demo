@@ -2,26 +2,9 @@
 
 ## Introduction - A cluster to rule them all.
 
-### ¿Qué es la federación en Kubernetes?
+This repo will be used as a complement for the spainclouds meetup where Geko Cloud will be talking about Kubernetes Federation.
 
-La federación en Kubernetes consiste en la capacidad de gestionar y coordinar múltiples clústers de kubernetes desde un control plane maestro usando un conjunto de APIs que tendremos disponibles para este fin.
-
-Tal como veremos más adelante nos ofrece gran flexibilidad con la intención de ajustarse a casos complejos como por ejemplo el despliegue de aplicaciones multi-región o situaciones de disaster recovery.
-
-### Ventajas e inconvenientes
-
-#### Ventajas
-
-- Incrementa la disponibilidad de las aplicaciones usando clústers multi-region
-- Posibilidad de despliegues cross-cloud provider (GCP, AWS, Azure)
-- Posibilidad de despliegues conjuntos en cloud y on-premise
-- Failover entre clústers redundantes (Disaster Recovery)
-- Gestión centralizada de múltiples entornos (despliega en un solo lugar)
-
-#### Desventajas
-
-- Incremento considerable en la complejidad
-- Menor fiabilidad si no se realiza una buena gestión
+All the contents in this repo are supposed to go along with the presentation from the meetup although you can follow this lab regardless.
 
 # LAB TIME! Step-by-step
 
