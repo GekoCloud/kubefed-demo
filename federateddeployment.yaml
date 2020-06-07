@@ -8,41 +8,32 @@ spec:
     metadata:
       labels:
         app: nginx
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
-        app: nginx
-    template:
-      metadata:
-        labels:
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
           app: nginx
-      spec:
-        containers:
-          - image: nginx
-            name: nginx
-            volumeMounts:
-              - name: geko-way
-                mountPath: /usr/share/nginx/html/
-                volumes:
-        volumes:
-          - name: geko-way
-            configMap:
-              name: geko-way
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+            - image: nginx
+              name: nginx
+              volumeMounts:
+                - name: geko-way
+                  mountPath: /usr/share/nginx/html/
+          volumes:
+            - name: geko-way
+              configMap:
+                name: test-configmap
   placement:
     clusters:
       - name: kubefed-demo2
       - name: kubefed-demo1
-  overrides:
-    - clusterName: kubefed-demo2
-      clusterOverrides:
-        # - path: "/spec/template/spec/containers/0/volumeMounts"
-        #   value: []
-        - path: "/spec/replicas"
-          value: 2
-        - path: "/spec/template/spec/containers/0/image"
-          value: "nginx:1.17.0-alpine"
-        - path: "spec/template/spec/metadata/labels"
-          op: "add"
-          value:
-            project: geko-project
+  # overrides:
+  #   - clusterName: kubefed-demo2
+  #     clusterOverrides:
+  #       - path: "/spec/replicas"
+  #         value: 2
